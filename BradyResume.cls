@@ -2,7 +2,7 @@
 \ProvidesClass{BradyResume}[2017/04/22 Brady's Resume]
 
 % Based off of article
-\LoadClass{article}
+\LoadClass[12pt]{article}
 
 \RequirePackage[margin=1in]{geometry}
 
@@ -27,11 +27,37 @@
 
 \renewcommand{\maketitle}{\vspace*{-7em}
     \begin{center} {\bf \@name} \\
-    \@telenum -- \@email
+    \@telenum\ -- \@email
     \end{center}
     \parbox{\boxlength}{{\bf Current Address\\} \@address}
     \vspace{.5em}
     \hrule
-    \vspace{1em}
+%    \vspace{1em}
 }
 
+% Define Itemize labels
+\renewcommand{\labelitemi}{\textbullet}
+\renewcommand{\labelitemii}{$\circ$}
+
+% Redefine section style and spacing
+\renewcommand{\section}{%
+    \@startsection
+    {section}% command name
+    {1}{0pt}% section level, indend level (\z@???)
+    {-3.5ex \@plus -1ex \@minus -.2ex}% before skip
+    {.2ex}% after skip
+    %{2.3ex \@plus .2ex}% default after skip
+    {\normalfont\Large\bfseries}% style
+}
+\renewcommand{\subsection}{%
+   \@startsection
+    {subsection}% command name
+    {2}{0pt}% section level, indent level
+    {0ex}% before skip
+    %{-3.25ex\@plus -1ex \@minus -.2ex}% default before skip
+    {.2ex}% after skip
+    %{1.5ex \@plus .2ex}% default after skip
+    {\normalfont\bfseries\itshape}% style
+}
+
+% font sizes
