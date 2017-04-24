@@ -64,10 +64,14 @@
     {\normalfont\normalsize\bfseries\itshape}% style
 }
 
-\newcommand{\datesubsec}[2]{\subsection*{#1 \hfill\normalfont #2}}
+\newcommand{\datesubsec}[2]{\subsection*{#1 \normalfont\dotfill #2}}
 
 % font sizes
 %\renewcommand{\normalsize}{\fontsize{12}{12}\selectfont}
+
+% Remove page numbers
+\pagenumbering{gobble}
+%\pagenumbering{arabic}  % default - use arabic numerals for page
 
 
 % Other commands
