@@ -2,9 +2,11 @@
 \ProvidesClass{BradyResume}[2017/04/22 Brady's Resume]
 
 % Based off of article
-\LoadClass[12pt]{article}
+\LoadClass[10pt]{article}
 
 \RequirePackage[margin=1in]{geometry}
+\RequirePackage{enumitem}  % allows setting of spacing
+\RequirePackage[normalem]{ulem} % uses constant spacing underline
 
 %no automatic paragraph indents
 \setlength{\parindent}{0pt}   % default 15pt
@@ -35,11 +37,13 @@
 %    \vspace{1em}
 }
 
-% Define Itemize labels
+% Define itemize styles
+\setlist{noitemsep, nosep}  % removes itemsep for all lists
 \renewcommand{\labelitemi}{\textbullet}
 \renewcommand{\labelitemii}{$\circ$}
 
 % Redefine section style and spacing
+% TODO need to fix spacing between Sections
 \renewcommand{\section}{%
     \@startsection
     {section}% command name
@@ -57,7 +61,29 @@
     %{-3.25ex\@plus -1ex \@minus -.2ex}% default before skip
     {.2ex}% after skip
     %{1.5ex \@plus .2ex}% default after skip
-    {\normalfont\bfseries\itshape}% style
+    {\normalfont\normalsize\bfseries\itshape}% style
 }
 
+\newcommand{\datesubsec}[2]{\subsection*{#1 \hfill\normalfont #2}}
+
 % font sizes
+%\renewcommand{\normalsize}{\fontsize{12}{12}\selectfont}
+
+
+% Other commands
+% TODO make new environment
+%      where items are separated by {\textbar\/}
+%      and no linebreak
+\newcounter{@pipecount} \setcounter{@pipecount}{0}
+% A horizontal list environment with items separated by "|"
+% TODO need to fix the spacing of the very first item
+%      for now it works if you add a comment to the end of prev line
+\newenvironment{pipelist}%
+               {\def\item{\ifnum \the@pipecount=0 %
+                            \relax
+                          \else 
+                            \textbar\/
+                          \fi 
+                          \stepcounter{@pipecount}}}%
+                {\setcounter{@pipecount}{0}\\}
+
