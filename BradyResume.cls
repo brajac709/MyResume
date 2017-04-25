@@ -82,12 +82,20 @@
 % A horizontal list environment with items separated by "|"
 % TODO need to fix the spacing of the very first item
 %      for now it works if you add a comment to the end of prev line
-\newenvironment{pipelist}%
+\newenvironment{pipelist}[1][]%
                {\def\item{\ifnum \the@pipecount=0 %
                             \relax
                           \else 
                             \textbar\/
                           \fi 
-                          \stepcounter{@pipecount}}}%
+                          \stepcounter{@pipecount}}
+                 % Test for empty argument
+                 \def\@temp{#1}
+                 \ifx\@temp\empty%
+                 %
+                 \else%
+                   \uline{#1}:%
+                 \fi
+                }%
                 {\setcounter{@pipecount}{0}\\}
 
