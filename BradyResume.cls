@@ -6,7 +6,8 @@
 
 \RequirePackage[margin=1in]{geometry}
 \RequirePackage{enumitem}  % allows setting of spacing
-\RequirePackage[normalem]{ulem} % uses constant spacing underline
+%\RequirePackage[normalem]{ulem} % uses constant spacing underline
+\RequirePackage{soul} % some better underline handling??
 
 %no automatic paragraph indents
 \setlength{\parindent}{0pt}   % default 15pt
@@ -48,7 +49,8 @@
     \@startsection
     {section}% command name
     {1}{0pt}% section level, indend level (\z@???)
-    {-3.5ex \@plus -1ex \@minus -.2ex}% before skip
+    %{0ex}% before skip???    
+    {-3.5ex \@plus -1ex \@minus -.2ex}% default before skip
     {.2ex}% after skip
     %{2.3ex \@plus .2ex}% default after skip
     {\normalfont\Large\bfseries}% style
@@ -83,7 +85,8 @@
 % TODO need to fix the spacing of the very first item
 %      for now it works if you add a comment to the end of prev line
 \newenvironment{pipelist}[1][]%
-               {\def\item{\ifnum \the@pipecount=0 %
+               {\setul{0pt}{}%
+                \def\item{\ifnum \the@pipecount=0 %
                             \relax
                           \else 
                             \textbar\/
@@ -94,8 +97,8 @@
                  \ifx\@temp\empty%
                  %
                  \else%
-                   \uline{#1}:%
-                 \fi
+                   \ul{#1}:%
+                 \fi%
                 }%
-                {\setcounter{@pipecount}{0}\\}
+                {\setcounter{@pipecount}{0}\resetul}
 
