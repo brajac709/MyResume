@@ -101,4 +101,8 @@
                  \fi%
                 }%
                 {\setcounter{@pipecount}{0}\resetul}
+                
+                
+%Comment
+\newcommand{\comment}[1]{}
 
