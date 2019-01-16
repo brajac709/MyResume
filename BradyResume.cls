@@ -76,33 +76,35 @@
 %\pagenumbering{arabic}  % default - use arabic numerals for page
 
 
-% Other commands
-% TODO make new environment
-%      where items are separated by {\textbar\/}
-%      and no linebreak
-\newcounter{@pipecount} \setcounter{@pipecount}{0}
-% A horizontal list environment with items separated by "|"
+%%%%%%%% Other commands %%%%%%%%%%%%%
+
+% A horizontal list environment with items separated by a delimiter (default "|")
+\newcounter{@delimcount} \setcounter{@delimcount}{0}
 % TODO need to fix the spacing of the very first item
 %      for now it works if you add a comment to the end of prev line
-\newenvironment{pipelist}[1][]%
+% NOTE assumes there will always be a trailing space after a delimiter
+% NOTE since \unskip is used, may break in vertical mode
+\def\@defdelim{~\textbar}
+%\def\@defdelim{,}
+\newenvironment{delimlist}[2][\@defdelim]%
                {\setul{0pt}{}%
-                \def\item{\ifnum \the@pipecount=0 %
-                            \relax
-                          \else 
-                            \textbar\/
-                          \fi 
-                          \stepcounter{@pipecount}}
+                \def\item{\unskip\ifnum \the@delimcount=0 %
+                            \ \relax%
+                          \else% 
+                            #1\ %
+                          \fi% 
+                          \stepcounter{@delimcount}}%
                  % Test for empty argument
-                 \def\@temp{#1}
+                 \def\@temp{#2}%
                  \ifx\@temp\empty%
                  %
                  \else%
-                   \ul{#1}:%
+                   \ul{#2}:%
                  \fi%
                 }%
-                {\setcounter{@pipecount}{0}\resetul}
+                {\setcounter{@delimcount}{0}\resetul}
                 
                 
-%Comment
+%Comment out blocks
 \newcommand{\comment}[1]{}
 
