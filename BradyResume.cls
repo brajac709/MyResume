@@ -12,6 +12,9 @@
 %no automatic paragraph indents
 \setlength{\parindent}{0pt}   % default 15pt
 
+% reduce itemize indent
+\setlist[itemize,1]{leftmargin=\dimexpr 10pt}
+
 % Custom Header
 \newlength\boxlength
 \setlength\boxlength\textwidth
@@ -28,12 +31,16 @@
 \newcommand\addressb[1]{\renewcommand{\@addressb}{#1}}
 
 
+
+
+
 \renewcommand{\maketitle}{\vspace*{-7em}
     \begin{center} {\bf \@name} \\
-    \@telenum\ -- \@email
-    \end{center}
-    \parbox{\boxlength}{{\bf Current Address\\} \@address}
-    \vspace{.5em}
+    \@telenum\ -- \@email%
+    \end{center}%
+    %\parbox{\boxlength}{\centering  \@address }
+    %\vspace{.5em}
+    \vspace{-.8em}
     \hrule
 %    \vspace{1em}
 }
@@ -66,7 +73,9 @@
     {\normalfont\normalsize\bfseries\itshape}% style
 }
 
-\newcommand{\datesubsec}[2]{\subsection*{#1 \normalfont\dotfill #2}}
+
+\def\@mylistspacing{5pt}
+\newcommand{\datesubsec}[3]{\vspace*{\@mylistspacing}\subsection*{#1 \normalfont\dotfill #2\\#3}}
 
 % font sizes
 %\renewcommand{\normalsize}{\fontsize{12}{12}\selectfont}
@@ -84,12 +93,12 @@
 %      for now it works if you add a comment to the end of prev line
 % NOTE assumes there will always be a trailing space after a delimiter
 % NOTE since \unskip is used, may break in vertical mode
-\def\@defdelim{~\textbar}
-%\def\@defdelim{,}
+%\def\@defdelim{~\textbar}
+\def\@defdelim{,}
 \newenvironment{delimlist}[2][\@defdelim]%
                {\setul{0pt}{}%
                 \def\item{\unskip\ifnum \the@delimcount=0 %
-                            \ \relax%
+                            \relax%
                           \else% 
                             #1\ %
                           \fi% 
@@ -99,7 +108,9 @@
                  \ifx\@temp\empty%
                  %
                  \else%
-                   \ul{#2}:%
+                   %\ul{#2}:%
+                   \vspace{\@mylistspacing}
+                   {\bf#2:}
                  \fi%
                 }%
                 {\setcounter{@delimcount}{0}\resetul}
