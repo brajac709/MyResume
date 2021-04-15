@@ -8,6 +8,7 @@
 \RequirePackage{enumitem}  % allows setting of spacing
 %\RequirePackage[normalem]{ulem} % uses constant spacing underline
 \RequirePackage{soul} % some better underline handling??
+\RequirePackage{xcolor}
 
 %no automatic paragraph indents
 \setlength{\parindent}{0pt}   % default 15pt
