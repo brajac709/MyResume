@@ -35,7 +35,7 @@ jobs:
           root_file: my_resume.tex
           # Arbitrary bash codes to be executed before compiling LaTeX documents
           # TODO not sure if I want to spend the time to update everything... might be better to only do my packages I need
-          pre_compile: "tlmgr update --self && tlmgr update --all"
+          pre_compile: "tlmgr update --self geometry enumitem soul xcolor"
       - uses: actions/upload-artifact@v2
         with:
           name: PDF
