@@ -57,8 +57,8 @@
     \@startsection
     {section}% command name
     {1}{0pt}% section level, indend level (\z@???)
-    %{0ex}% before skip???    
-    {-3.5ex \@plus -1ex \@minus -.2ex}% default before skip
+    {2ex}% before skip???    
+    %{-3.5ex \@plus -1ex \@minus -.2ex}% default before skip    
     {.2ex}% after skip
     %{2.3ex \@plus .2ex}% default after skip
     {\normalfont\Large\bfseries}% style
