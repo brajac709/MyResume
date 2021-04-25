@@ -59,7 +59,7 @@
     {1}{0pt}% section level, indend level (\z@???)
     {2ex}% before skip???    
     %{-3.5ex \@plus -1ex \@minus -.2ex}% default before skip    
-    {.2ex}% after skip
+    {.1ex}% after skip
     %{2.3ex \@plus .2ex}% default after skip
     {\normalfont\Large\bfseries}% style
 }
@@ -77,6 +77,9 @@
 
 \def\@mylistspacing{5pt}
 \newcommand{\datesubsec}[3]{\vspace*{\@mylistspacing}\subsection*{#1 \normalfont\dotfill #2\\#3}}
+% should be less than list spacing
+\def\@firstlinespacing{3pt}
+\def\firstlineskip{\vspace*{-\@firstlinespacing}}
 
 % font sizes
 %\renewcommand{\normalsize}{\fontsize{12}{12}\selectfont}
